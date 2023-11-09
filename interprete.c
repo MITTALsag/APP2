@@ -34,7 +34,7 @@ int interprete (sequence_t* seq, bool debug)
 
     char commande;
 
-    if (! silent_mode) {  //pour execution "pas a pas" ----> mettre silent_mode sur false pour affichage (modifier aussi le makefile) (silent_mode se trouve dans le fichier liste.c)
+    if (!silent_avant_apres) {  //pour execution "pas a pas" ----> mettre silent_mode sur false pour affichage (modifier aussi le makefile) (silent_mode se trouve dans le fichier liste.c)
         bool debug = true;  
         printf ("Programme:");
         afficher(seq);
@@ -54,12 +54,14 @@ int interprete (sequence_t* seq, bool debug)
     while ( cel_courante ) { 
 
         int type = cel_courante->type;
+        if (!silent_mode){printf("TYPE : %d\n", type);}
 
         switch (type) {
 
             case 0 : 
 
                 commande = cel_courante->buffer.command;
+                if (!silent_mode){printf("COMMAND : %c\n", commande);}
 
                 switch (commande){
                     case 'A':
@@ -67,7 +69,7 @@ int interprete (sequence_t* seq, bool debug)
                         supprime_tete(seq);
                         if (ret == VICTOIRE){ 
 
-                            if (!silent_mode){
+                            if (!silent_avant_apres){
                                 bool debug = true;  
                                 afficherCarte();
                                 printf("PILE APRES EXEC : ");
@@ -159,6 +161,7 @@ int interprete (sequence_t* seq, bool debug)
                 }
                 break;
             case 1 :
+                if (!silent_mode){printf("CHIFFRE : %d\n", cel_courante->buffer.chiffre);}
             case 2 : 
                 ajout_pile(&pile, seq);
                 break; 

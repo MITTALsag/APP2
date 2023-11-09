@@ -24,13 +24,15 @@
 #endif
 
 extern bool silent_mode;
+extern bool silent_avant_apres;
 
 
 
 
 struct cellule {
     int type;   //pour savoir de quel type est dans le union par defaut 0 (0 pour commande, 1 pour chiffre et 2 pour groupe commande)
-
+    int espace_avant;
+    int espace_apres;
     union {
         char command;   //utiliser pour les commandes executables
         int chiffre;    //utilier uniquement pour les chiffre (pour les calcul et les commandes qui se servent de chiffre)
@@ -58,6 +60,8 @@ cellule_t* detruireCellule (cellule_t* cel);
 cellule_t* detruireSeq(cellule_t* cel); //detruit une sequence meme si il y un groupe de commande
 
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+int nb_espace_avant(char* txt, int indice, cellule_t* cel); //ajoute le nombre d'espace qu'il faut dans la cellule
 
 int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice);//sert dans conversion a mettre un groupe de commande dans une cellule
 

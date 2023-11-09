@@ -17,6 +17,7 @@
  */
 
 bool silent_mode = true;
+bool silent_avant_apres = false; //sert a voir avant et apres l'execution
 
 
 cellule_t* nouvelleCellule (void)
@@ -27,6 +28,8 @@ cellule_t* nouvelleCellule (void)
         exit(EXIT_FAILURE);
     }
     nouvelle_cellule->type = 0;
+    nouvelle_cellule->espace_avant = 0;
+    nouvelle_cellule->espace_apres = 0;
     nouvelle_cellule->buffer.command = 'L'; //valeur impossible dans le jeu
     nouvelle_cellule->suivant = NULL;
     return nouvelle_cellule;
@@ -63,6 +66,15 @@ cellule_t* detruireSeq(cellule_t* cel){
 
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
+int nb_espace_avant(char* txt, int indice, cellule_t* cel){
+    int nb_esp = 0;
+    while(txt[indice] == ' '){
+        nb_esp++;
+        indice++;
+    }
+    cel->espace_avant = nb_esp;
+    return indice;
+}
 
 int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice){//sert dans conversion a mettre un groupe de commande dans une cellule
 
@@ -78,7 +90,7 @@ int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice){/
 
     while (indice < len_txt && txt[indice] != '}'){
 
-        if (txt[indice] != '\n' && txt[indice] != '\0' && txt[indice] != ' '){
+        if (txt[indice] != '\n' && txt[indice] != '\0'){
             cellule_t* groupe = nouvelleCellule();
 
             if (first_iteration) {
@@ -123,8 +135,10 @@ void conversion (char *texte, sequence_t *seq){
 
     for (int i = 0 ; i < len ; i++){
 
-        if (texte[i]!= '\n' && texte[i] != '\0' && texte[i] != ' '){ //on ne fais rien si texte[i] == \n ou \0
+        if (texte[i]!= '\n' && texte[i] != '\0'){ //on ne fais rien si texte[i] == \n ou \0
             cellule_t* nouv_cel = nouvelleCellule();
+
+            i = nb_espace_avant(texte, i, nouv_cel);
         
 
             if (!seq->tete){ //si seq->tete == NULL (sert que la premiere itération)
@@ -170,6 +184,12 @@ void afficher_rec (sequence_t* seq)
 
     while (cel){
 
+        int nb_esp = cel->espace_avant;
+
+        for(int i = 0; i < nb_esp; i++){
+            printf(" ");
+        }
+
         if (cel->type == 1){ //si c'est un chiffre on affiche un %d
             printf("%d", cel->buffer.chiffre);
         }
@@ -182,6 +202,12 @@ void afficher_rec (sequence_t* seq)
             tmp.tete = cel->buffer.groupe_command;
             afficher_rec(&tmp);
             printf("}");
+        }
+
+        int nb_esp_bis = cel->espace_apres;
+
+        for(int j = 0; j < nb_esp_bis; j++){
+            printf(" ");
         }
 
         cel = cel->suivant;
