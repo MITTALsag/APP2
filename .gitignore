@@ -2,4 +2,3 @@ tests/perfs/*
 *.o
 main
 *.png
-test
