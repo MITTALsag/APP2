@@ -1,0 +1,50 @@
+{3M {1M {7M {5M {1P 3M {} {} ? C!} {DDA1PGG C!} ? } {GA1PD C!} ?} {A1P C!} ?} {DA1PG C!} ? }C!
+
+{3M {1M {7M {5M {} { {D}! {D}! {A1P}! {G}! {G}! C!} ?} { {G}! {A1P}! {D}! C!} ?} { {A1P}! C!} ?} { {D}! {A1P}! {G}! C!} ?} C!
+
+
+{3M {1M {7M {5M {} { {D}! {D}! {A1P}! {G}! {G}! C!} ?} { {G}! {A1P}! {D}! C!} ?} { {A1P}! C!} ?} { {D}! {A1P}! {G}! C!} ?} C! {3M {1M {7M {5M {} {IIIII} ? C!} {III} ? C!} {I} ? C!} {III} ? C!}!
+
+{{3M {} {{D}C! {A1P}C! {G}C! } ? } ! { 3M {!!!} { III } ? }! C!}C! 
+
+
+{3M {} {{D}C! {A1P}C! {G}C! } ?} C! {3M {} {I} ? C!}
+
+
+{{3M {} {{D}C! {A}C! {G}C! } ? } ! { 0M 1P{!!!} {41R} ? }! C!}C! 
+
+
+
+
+{A} 6B
+{G {A} 2B} 2B
+{D {A} 4B} 3B
+G {A} 2B
+G {A} 6B
+{{D {A} 2B} 2B {G {A} 2B} 2B} 2B
+
+
+D {A} 8B
+D {A} 2B
+G {A} 4B
+{D {A} 2B} 2B
+{G {A} 2B} 2B
+
+
+D {A} 2B
+D {A} 4B
+D {A} 2B
+{G {A} 2B} 2B
+D {A} 4B
+{G {A} 2B}
+{D {A} 4B}
+D {A} 2B
+
+
+{G {A} 2B} 2B
+D {A} 2B
+G {A} 2B
+G {A} 4B
+D {A} 2B
+G {A} 8B
+
