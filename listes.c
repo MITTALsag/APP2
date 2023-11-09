@@ -63,18 +63,6 @@ cellule_t* detruireSeq(cellule_t* cel){
 
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
-int mettre_dans_chiffre(cellule_t* cel, char* txt, int len_txt, int indice){ //sert dans conversion a mettre un chiffre dans une cellule
-    int chiffre_a_mettre = 0;
-
-    while (indice < len_txt && '0' <= txt[indice] && txt[indice] <= '9'){ //calcul du chifre a mettre
-
-        chiffre_a_mettre = (chiffre_a_mettre * 10) + (txt[indice] - '0'); // la deuxieme parentèse sert a convertir le char en int
-        indice++;
-
-    }
-    cel->buffer.chiffre = chiffre_a_mettre;
-    return indice -1;
-}
 
 int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice){//sert dans conversion a mettre un groupe de commande dans une cellule
 
@@ -110,8 +98,6 @@ int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice){/
             else if ( '0' <= txt[indice] && txt[indice] <= '9'){//Alors on change le type de la cellule en 1 (chiffre et on met le chiffre dans la cellule)
                 groupe->type = 1;
                 groupe->buffer.chiffre =  txt[indice] - '0';
-
-                //indice = mettre_dans_chiffre(groupe, txt, len_txt, indice); //la valeur de retour sert a ne pas lire plusieur fois le même char
             }
             else { //ajout d'un elelemnt du type 0 a la fin de la queue
                 groupe->buffer.command =  txt[indice];
@@ -153,8 +139,6 @@ void conversion (char *texte, sequence_t *seq){
             if ( '0' <= texte[i] && texte[i] <= '9') {//Alors on change le type de la cellule en 1 (chiffre et on met le chiffre dans la cellule)
                 nouv_cel->type = 1;
                 nouv_cel->buffer.chiffre = texte[i] - '0';
-
-                //i = mettre_dans_chiffre(nouv_cel, texte, len, i); //la valeur de retour sert a ne pas lire plusieur fois le même char
             }
 
             else if (texte[i] == '{'){ //si on est dans un groupe de commande ---> Alors on change le type en 2 et on met le groupe dans la cellule

@@ -9,7 +9,7 @@ CC=clang
 ## Flags de compilation pour les tests de performance.
 ## A decommenter pour desactiver tous les affichages, puis forcer la 
 ## recompilation avec 'make -B'
-CFLAGS=-O3 -g -Wall -Wextra -Werror -DSILENT -Wno-unused-parameter
+CFLAGS=-O0 -g -Wall -Wextra -Werror -DSILENT -Wno-unused-parameter
 
 
 
