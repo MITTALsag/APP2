@@ -17,6 +17,7 @@
  */
 
 bool silent_mode = true;
+bool silent_avant_apres = true; //sert a montrer au debut et a la fin de l'execution
 
 
 cellule_t* nouvelleCellule (void)

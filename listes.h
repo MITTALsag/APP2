@@ -24,6 +24,7 @@
 #endif
 
 extern bool silent_mode;
+extern bool silent_avant_apres;
 
 
 
