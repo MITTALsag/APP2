@@ -67,7 +67,7 @@ cellule_t* detruireSeq(cellule_t* cel){
 
 int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice, int* compteur, cellule_t** avant_queue){//sert dans conversion a mettre un groupe de commande dans une cellule
 
-    if (*compteur >= 100000){
+    if (*compteur >= 200000){
         *avant_queue = cel;
         return indice - 1;
     }
@@ -101,7 +101,7 @@ int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice, i
                 *compteur = *compteur + 1;
                 groupe->type = 2;
                 indice = mettre_dans_groupe_cmd(groupe, txt, len_txt, indice + 1, compteur, avant_queue);
-                if (*compteur >= 100000){
+                if (*compteur >= 200000){
                     return indice;
                 }
             }
