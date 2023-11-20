@@ -60,7 +60,7 @@ cellule_t* detruireSeq(cellule_t* cel); //detruit une sequence meme si il y un g
 
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
-int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice);//sert dans conversion a mettre un groupe de commande dans une cellule
+int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice, int* compteur, cellule_t** avant_queue);//sert dans conversion a mettre un groupe de commande dans une cellule
 
 void conversion (char *texte, sequence_t *seq);
 

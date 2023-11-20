@@ -65,7 +65,12 @@ cellule_t* detruireSeq(cellule_t* cel){
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice){//sert dans conversion a mettre un groupe de commande dans une cellule
+int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice, int* compteur, cellule_t** avant_queue){//sert dans conversion a mettre un groupe de commande dans une cellule
+
+    if (*compteur >= 200000){
+        *avant_queue = cel;
+        return indice - 1;
+    }
 
     //si le groupe est vide
     if (txt[indice] == '}'){
@@ -93,8 +98,12 @@ int mettre_dans_groupe_cmd(cellule_t* cel, char* txt, int len_txt, int indice){/
             }
 
             if (txt[indice] == '{'){ //appelle recursif 
+                *compteur = *compteur + 1;
                 groupe->type = 2;
-                indice = mettre_dans_groupe_cmd(groupe, txt, len_txt, indice + 1);
+                indice = mettre_dans_groupe_cmd(groupe, txt, len_txt, indice + 1, compteur, avant_queue);
+                if (*compteur >= 200000){
+                    return indice;
+                }
             }
             else if ( '0' <= txt[indice] && txt[indice] <= '9'){//Alors on change le type de la cellule en 1 (chiffre et on met le chiffre dans la cellule)
                 groupe->type = 1;
@@ -143,9 +152,18 @@ void conversion (char *texte, sequence_t *seq){
             }
 
             else if (texte[i] == '{'){ //si on est dans un groupe de commande ---> Alors on change le type en 2 et on met le groupe dans la cellule
+                cellule_t* queu_groupe = NULL;
+                int cmp = 1;
+                int* compteur = &cmp;
                 nouv_cel->type = 2;
+                i = mettre_dans_groupe_cmd(nouv_cel, texte, len, i + 1, compteur, &queu_groupe);
+                while (queu_groupe && i < len){
+                    *compteur = 0;
+                    cellule_t* tmp = NULL;
+                    i = mettre_dans_groupe_cmd(queu_groupe, texte, len, i+1, compteur, &tmp);
+                    queu_groupe = tmp;
+                }
 
-                i = mettre_dans_groupe_cmd(nouv_cel, texte, len, i + 1);
             }
 
             else { //si c'est une commande executable
