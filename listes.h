@@ -74,7 +74,7 @@ void afficher (sequence_t* seq);
 
 void supprime_tete(sequence_t* seq); //supprime la tete de seq (meme si il y a un groupe)
 
-void ajouter_tete(sequence_t* seq, cellule_t* cel); //ajoute cel au debut de seq
+void ajouter_tete(sequence_t* seq, cellule_t* cel); //ajoute cel au debut de seq 
 
 void ajout_pile(sequence_t* pile,sequence_t* seq);//ajoute l'element au debut de seq au debut de la pile (evite de detruire puis recree)
 

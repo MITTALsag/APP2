@@ -29,8 +29,7 @@ void stop (void)
 
 int interprete (sequence_t* seq, bool debug)
 {
-    // Version temporaire a remplacer par une lecture des commandes dans la
-    // liste chainee et leur interpretation.
+
 
     char commande;
 

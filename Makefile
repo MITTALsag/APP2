@@ -17,7 +17,6 @@ CFLAGS=-O0 -g -Wall -Wextra -Werror -DSILENT -Wno-unused-parameter
 # comment créer les .o à partir des .c
 main: main.o curiosity.o listes.o interprete.o commande_interprete.o
 
-test : test.o curiosity.o listes.o interprete.o commande_interprete.o
 
 
 clean:
